@@ -1,0 +1,19 @@
+sseleniumFirstProject
+    - .idea
+    - src
+        - test
+            - drivers
+            - java
+                - tests
+                    - GoogleTest
+            - resources
+    - target
+    - pom.xml
+
+    absolute path: "seleniumFirstProject/src/test/java/tests/GoogleTest"
+    relative path: test/java/tests/GoogleTest
+
+
+    Path can be:
+    - absolute
+    - relative
