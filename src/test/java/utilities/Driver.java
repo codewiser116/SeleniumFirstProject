@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.time.Duration;
+
 public class Driver {
 
     static WebDriver driver;
@@ -13,8 +15,6 @@ public class Driver {
 
         System.setProperty("webdriver.chrome.driver",
                 "/Users/codewiseacademy/Desktop/SeleniumFirstProject/src/test/drivers/chromedriver");
-
-
 
         if (driver != null){
             return driver;
@@ -31,9 +31,19 @@ public class Driver {
                     driver = new ChromeDriver();
         }
 
-
-
         driver.manage().window().maximize();
+
+        /*
+        PageLoadWait waits until all elements in the page are loaded
+         */
+        int pageWait = Integer.parseInt((Config.getProperty("pageLoadTimeOut")));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageWait));
+
+        /*
+        Implicit wait, waits until element is visible.
+         */
+        int waitTime = Integer.parseInt(Config.getProperty("implicitWait"));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(waitTime));
 
         return driver;
     }
