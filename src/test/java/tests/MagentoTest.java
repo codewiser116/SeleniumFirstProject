@@ -48,9 +48,9 @@ public class MagentoTest {
     public static void addProductToCart(WebDriver driver){
 
         List<WebElement> addToCartButtons = UtilWait.waitUntilAllElementsAreVisible
-                (driver, 20, By.xpath("//button[@title='Add to Cart']"));
+                (driver, 20, By.xpath("//button[@title='Add to Cart']")); //12
 
-        int randomButton = new Random().nextInt(1, addToCartButtons.size());
+        int randomButton = new Random().nextInt(1, addToCartButtons.size()); //3
 
         List<WebElement> productSizes = UtilWait.waitUntilAllElementsAreVisible
                 (driver, 20, By.xpath("(//div[@class='swatch-attribute size']/div)[" + randomButton + "]/div"));
@@ -59,8 +59,8 @@ public class MagentoTest {
                 (driver, 20, By.xpath("(//div[@class='swatch-attribute color']/div)[" + randomButton + "]/div"));
 
 
-        int randomSize = new Random().nextInt(1, productSizes.size());
-        int randomColor = new Random().nextInt(1, productColors.size());
+        int randomSize = new Random().nextInt(1, productSizes.size()); //2
+        int randomColor = new Random().nextInt(1, productColors.size()); //1
 
 
         productSizes.get(randomSize).click();
@@ -68,11 +68,13 @@ public class MagentoTest {
 
 
         Actions actions = new Actions(driver);
-        actions.moveToElement(addToCartButtons.get(randomButton));
-        actions.click().build().perform();
+        WebElement parentProductInfo = driver.findElements(By.xpath("//div[@class='product details product-item-details']")).get(randomButton);
+        actions.moveToElement(parentProductInfo);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(addToCartButtons.get(randomButton))).click();
+        actions.moveToElement(addToCartButtons.get(randomButton)).click().build().perform();
+
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        wait.until(ExpectedConditions.elementToBeClickable(addToCartButtons.get(randomButton))).click();
 
 
 

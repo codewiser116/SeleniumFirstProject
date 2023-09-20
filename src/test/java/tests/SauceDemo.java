@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -65,13 +66,7 @@ public class SauceDemo {
         String expectedUrl = "https://www.saucedemo.com/inventory.html";
         String actualUrl = driver.getCurrentUrl();
 
-        if (expectedUrl.equals(actualUrl)){
-            System.out.println("User is logged in successfully!");
-        }else{
-            System.out.println("User couldn't login");
-        }
-
-        // BREAK UNTIL 12:05
+        Assert.assertEquals("URL did not match", expectedUrl, actualUrl);
 
 
         /*
